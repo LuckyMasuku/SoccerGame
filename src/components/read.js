@@ -35,7 +35,7 @@ export class Read extends React.Component{
         },
         {
             "Player": "Tammy",
-            "Venue": "Man city",
+            "Venue": "Mancity",
             "imdbID": "tt0472063",
             "Type": "match",
             "Team": "https://i2-prod.dailystar.co.uk/incoming/article19445534.ece/ALTERNATES/s1227b/0_httpscdnimagesdailystarcoukdynamic122photos804000900x738862804"
