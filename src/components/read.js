@@ -15,7 +15,7 @@ export class Read extends React.Component {
         //this function will get response from the path updating the state
             .then(
                 (response) => {
-                    this.setState({ matches: response.data.matches })
+                    this.setState({ matches: response.data })
                 })
                 //if there is an error this function will be used
             .catch((error)=>{ 
