@@ -3,6 +3,7 @@ const app = express()
 const port = 4000
 const cors = require('cors');
 const bodyParser = require("body-parser");
+const mongoose = require('mongoose');
 
 //allow the bodypurser to intercept from the http 
 //allows to use everytime 
@@ -18,6 +19,26 @@ next();
 app.use(bodyParser.urlencoded({ extended: false }))
 
 app.use(bodyParser.json())
+
+
+//Connection string to connect to database
+const myConnectionString = 'mongodb+srv://admin:masuku@cluster0.ty8xv.mongodb.net/matches?retryWrites=true&w=majority';
+mongoose.connect(myConnectionString, {useNewUrlParser: true});
+
+//Schema of the database on what type of database it will be stored
+const Schema = mongoose.Schema;
+
+//How the document will look like
+var matchSchema =new Schema({
+    player:String,
+    venue:String,
+    team:String
+
+});
+
+//match collection that allows the entry to the database this will allow to write data to the database
+var MatchModel = mongoose.model("match", matchSchema);
+
 
 
 
@@ -72,10 +93,16 @@ app.get('/api/matches',(req, res)=>{
 })
 // when data is passed 
 app.post('/api/matches', (req, res)=>{
-          console.log('Match Played!')
+          console.log('Matches Played!')
           console.log(req.body.player);
           console.log(req.body.venue);
           console.log(req.body.team);
+
+          MatchModel.create({
+             player:req.body.player,
+             venue:req.body.venue,
+             team:req.body.team
+          })
           
 })
 app.listen(port, () => {
