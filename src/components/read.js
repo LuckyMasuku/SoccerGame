@@ -1,25 +1,31 @@
 import React from 'react';
 import { Matches } from './matches';
 import axios from 'axios';
+//Class extends from react
 export class Read extends React.Component {
-
+    //added data to the state
     state = {
         matches: []
 
     };
 
     componentDidMount() {
-        axios.get('https://jsonblob.com/api/jsonBlob/796843d1-4aee-11eb-99b0-6f78780eabc2')
+        //it will allow to retrieve information about resource
+        axios.get('http://localhost:4000/api/matches')
+        //this function will get response from the path updating the state
             .then(
                 (response) => {
-                    this.setState({ matches: response.data.Search })
+                    this.setState({ matches: response.data.matches })
                 })
+                //if there is an error this function will be used
             .catch((error)=>{ 
                 console.log(error)
             });
 
     }
+     //render used to run the function
     render() {
+         //the return will return and display the command
         return (
             <div>
                 <h1> The is my read Component.</h1>

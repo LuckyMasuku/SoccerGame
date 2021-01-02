@@ -18,7 +18,7 @@ class App extends Component {
 
   render() {
     return (
-
+       //router wraps the whole function
       <Router>
         <div className="App">
 

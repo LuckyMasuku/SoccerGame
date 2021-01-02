@@ -1,7 +1,9 @@
 import React from 'react';
+import axios from 'axios';
 
+//Class extends from react
 export class Create extends React.Component {
-
+     //allows the bind to the controls
     constructor() {
         super();
         this.onSubmit = this.onSubmit.bind(this);
@@ -16,29 +18,45 @@ export class Create extends React.Component {
 
         }
     }
-    //Onchange player
-    onChangePlayer(e) {
+    //when  the value changes update the state
+    onChangePlayer(a) {
         this.setState({
-            Player: e.target.value
+            Player: a.target.value
         });
     }
     //Onchange venue
-    onChangeVenue(e){
+    onChangeVenue(a){
         this.setState({
-            Venue: e.target.value
+            Venue: a.target.value
         });
     }
 
     //Onchange team
-    onChangeTeam(e){
+    onChangeTeam(a){
        this.setState({
-           Team: e.target.value
+           Team: a.target.value
        });
     }
     //this will take an arguement
-    onSubmit(e) {
-        e.preventDefault();
+    onSubmit(a) {
+        a.preventDefault();
         alert("Match: " + this.state.Player + " " + this.state.Venue +" "+ this.state.Team);
+
+        const newMatch = {
+            player: this.state.Player,
+            venue: this.state.Venue,
+            team: this.state.Team
+        }
+         //local host running on 4000
+        //returns a promise
+        axios.post('http://localhost:4000/api/matches',newMatch)
+        .then((res)=>{
+            console.log(res);
+        })
+        //Unhappy path
+        .catch((err)=>{
+            console.log(err);
+        });
     }
     render() {
         return (
