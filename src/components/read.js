@@ -28,7 +28,7 @@ export class Read extends React.Component {
          //the return will return and display the command
         return (
             <div>
-                <h1> The is my read Component.</h1>
+                <h1> Welcome to the top players for 2020</h1>
                 <Matches matches={this.state.matches}></Matches>
             </div>
         );

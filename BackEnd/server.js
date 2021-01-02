@@ -107,6 +107,22 @@ app.get('api/matches/:id',(req, res)=>{
         res.json(data);
     })
 })
+
+//delete function will listen to http request 
+app.delete('api/matches/:id', (req, res)=>{
+    console.log("Delete Match: "+req.params.id);
+
+    //edit
+   // app.edit('api/matches/:id', (req, res)=>{
+        //console.log("Edit Match: "+req.params.id);
+        //<Link to={"edit/" + this.props.match._id} className="btn btn-primary"></Link>
+
+
+     //Allows to finf the record in the database
+    MatchModel.findByIdAndDelete(req.params.id, (err, data)=>{
+        res.send(data);
+    })
+})
 // when data is passed 
 app.post('/api/matches', (req, res) => {
     console.log('Matches Played!')
@@ -125,4 +141,5 @@ app.post('/api/matches', (req, res) => {
 })
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)
+
 })
